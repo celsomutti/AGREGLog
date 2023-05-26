@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AGREG Log</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="bootstrap-4.3.1-dist/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/cadastro.js"></script>
+    <link rel="shortcut icon" href="img/iconeagreglog.ico" >
+</head>
+<body>  
+  <div class="container">
+      <form action="http://201.38.172.137/api/agreglog/cadastro_candidato.php" method="post" >
+        <div class="row" id="title">
+            <div class="col-sm-4 col-xs-12" id="logo"></div>
+            <div class="col-sm-4 col-xs-12">
+                <div class="descricao">
+                    <h2>Cadastro de Candidatos</h2>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-11 control-label" id="aviso">
+            <p class="help-block" ><h11>*</h11> Campo Obrigatório </p>
+          </div>          
+        </div>
+
+        <div class="row">
+          <!--Subtitulo das informações do candidato-->
+            <div class="col-12" id="subTitulo">
+                <h4>Informações Pessoais</h4>    
+            </div>
+        </div>
+
+        <div class="row">
+          <!--Nome completo do candidato-->
+          <div class="col-md-6 col-xs-4">
+            <div class="form-group">
+              <label for="nome">Nome: <h11>*</h11> </label>
+              <input id="nome" type="text" class="form-control" name="nome" placeholder="Nome Completo" maxlength="70" required>
+            </div>
+          </div>    
+          <!--Número do CPF do candidato-->
+          <div class="col-md-3 col-xs-2">
+            <div class="form-group">
+              <label for="cpf">CPF: <h11>*</h11></label>
+              <input id="cpf" type="text" class="form-control" name="cpf" placeholder="Somente números" required  maxlength="14" OnKeyPress="formatar('000.000.000-000', this)" onBlur="showhide()">
+            </div>
+          </div> 
+          <!--Data de nascimento do candidato-->
+          <div class="col-md-2 col-xs-2">
+            <div class="form-group">
+              <label for="dataNascimento">Nascimento: <h11>*</h11> </label>
+              <input id="dtnasc" name="dataNascimento" placeholder="DD/MM/AAAA" class="form-control input-md" required="" type="text" maxlength="10" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
+            </div>
+          </div> 
+        </div>
+
+        <div class="row">
+          <!--Subtitulo do endereço, telefones do candidato, regiões que conhece-->
+          <div class="col-12" id="subTitulo">
+            <h4>Informações do Endereço, Contato e Regiões Conhecidas</h4>    
+          </div>              
+        </div>
+
+        <div class="row">
+          <!--Endereço do endereço do candidato-->
+          <div class="col-md-6 col-xs-4">
+            <div class="form-group">
+              <label for="enderecoPessoal">Endereço: <h11>*</h11> </label>
+              <input id="endereco" type="text" class="form-control" name="enderecoPessoal" placeholder="Endereço" required maxlength="85" >
+            </div>
+          </div>
+          <!--Número do endereço do candidato-->
+          <div class="col-md-2 col-xs-2">
+            <div class="form-group">
+              <label for="numeroEnderecoPessoal">Número: </label>
+              <input id="numeroEndereco" type="text" class="form-control" name="numeroEnderecoPessoal" placeholder="Número" maxlength="11">
+            </div>
+          </div>
+          <!--Complemento do endereço do candidato-->
+          <div class="col-md-4 col-xs-4">
+            <div class="form-group">
+              <label for="complementoEnderecoPessoal">Complemento: </label>
+              <input id="complementoEndereco" type="text" class="form-control" name="complementoEnderecoPessoal" placeholder="Complemento" maxlength="50">
+            </div>
+          </div>
+        </div>  
+
+        <div class="row">
+          <!--Bairro do endereço do candidato-->
+          <div class="col-md-4 col-xs-3">
+            <div class="form-group">
+              <label for="bairroEnderecoPessoal">Bairro: <h11>*</h11> </label>
+              <input id="bairroEndereco" type="text" class="form-control" name="bairroEnderecoPessoal" placeholder="Bairro" required maxlength="70">
+            </div>
+          </div>      
+          <!--Cidade do endereço do candidato-->
+          <div class="col-md-5 col-xs-4">
+            <div class="form-group">
+              <label for="cidadeEnderecoPessoal">Cidade: <h11>*</h11> </label>
+              <input id="cidadeEndereco" type="text" class="form-control" name="cidadeEnderecoPessoal" placeholder="Cidade" required maxlength="70">
+            </div>
+          </div> 
+          <!--Sigla do estado da cidade do endereço do candidato-->
+          <div class="col-md-1 col-xs-1">
+            <div class="form-group">
+              <label for="ufEnderecoPessoal">UF: <h11>*</h11> </label>
+              <select class="form-control" id="uf" data-size="5" data-live-search="true" data-width="100%" name="ufEnderecoPessoal" required>
+                  <option selected disabled>UF</option>
+                  <option>AC</option>
+                  <option>AL</option>
+                  <option>AP</option>
+                  <option>AM</option>
+                  <option>BA</option>
+                  <option>CE</option>
+                  <option>DF</option>
+                  <option>ES</option>
+                  <option>GO</option>
+                  <option>MA</option>
+                  <option>MT</option>
+                  <option>MS</option>
+                  <option>MG</option>
+                  <option>PA</option>
+                  <option>PB</option>
+                  <option>PE</option>
+                  <option>PR</option>
+                  <option>PB</option>
+                  <option>PI</option>
+                  <option>RJ</option>
+                  <option>RN</option>
+                  <option>RS</option>
+                  <option>RO</option>
+                  <option>RR</option>
+                  <option>SC</option>
+                  <option>SP</option>
+                  <option>SE</option>
+                  <option>TO</option>
+              </select>
+            </div>
+          </div>
+          <!--CEP do endereço do candidato-->
+          <div class="col-md-2 col-xs-2">
+            <div class="form-group">
+              <label for="cepEnderecoPessoal">CEP: <h11>*</h11> </label>
+              <input id="cepEndereco" type="text" class="form-control" name="cepEnderecoPessoal" placeholder="00000-000" required maxlength="9" OnKeyPress="formatar('00000-000', this)" onBlur="showhide()">
+            </div>
+          </div>   
+          <!--Número do telefone residencial do candidato-->
+          <div class="col-md-3 col-xs-3">
+            <div class="form_group">
+              <label for="telefoneResidencial">Telefone Residencial: </label>
+              <input type="text" name="telefoneResidencial" id="telefone"  class="form-control" maxlength="30" placeholder="XX XXXXX-XXXX" OnKeyPress="formatar('## #####-####', this)">
+            </div>
+          </div>          
+          <!--Número do telefone pessoal do candidato-->     
+          <div class="col-md-3 col-xs-3">
+            <div class="form_group">
+              <label for="telefonePessoal">Telefone Pessoal: </label>
+              <input type="text" name="telefonePessoal" id="telefone"  class="form-control" maxlength="30" placeholder="XX XXXXX-XXXX" OnKeyPress="formatar('## #####-####', this)">
+            </div>
+          </div>         
+          <!--Número do telefone celular do candidato-->    
+          <div class="col-md-3 col-xs-3">
+            <div class="form_group">
+              <label for="telefoneCelular">Telefone Celular: <h11>*</h11> </label>
+              <input type="text" name="telefoneCelular" id="telefone"  class="form-control" maxlength="30" placeholder="XX XXXXX-XXXX" OnKeyPress="formatar('## #####-####', this)" required> 
+            </div>
+          </div>         
+          <!--Número do telefone comercial do candidato-->    
+          <div class="col-md-3 col-xs-3">
+            <div class="form_group">
+              <label for="telefoneComercial">Telefone Comercial: </label>
+              <input type="text" name="telefoneComercial" id="telefone"  class="form-control" maxlength="30" placeholder="XX XXXXX-XXXX" OnKeyPress="formatar('## #####-####', this)">
+            </div>
+          </div>         
+        </div>
+
+        <div class="row">
+          <!--Email do candidato-->
+          <div class="col-md-12 col-xs-12">
+            <div class="form-group">
+              <label for="email">E-Mail: <h11>*</h11> </label>
+              <input id="email" type="text" class="form-control" name="email" placeholder="email@email.com" required="" maxlength="256" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            </div>
+          </div>          
+        </div>    
+
+        <div class="row">
+          <!--Área de atuação do candidato-->
+          <div class="col-md-12 col-xs-12">
+            <div class="form-group">
+              <label for="areaAtuacao">Região(ões) que conhece: <h11>*</h11> </label>
+              <input id="areaAtuacao" type="text" class="form-control" name="areaAtuacao" placeholder="Descreva as regiões que conhece" required maxlength="2048">
+            </div>
+          </div>          
+        </div>
+
+        <div class="row">
+          <!--Subtitulo do  MEI-->
+          <div class="col-12" id="subTitulo">
+            <h4>Empresa / MEI / Pessoa Jurídica</h4>    
+          </div>              
+        </div>
+
+        <div class="row">
+          <!--CNPJ MEI-->
+          <div class="col-md-12 col-xs-12">
+            <div class="form-group">
+              <label for="cnpjmei">Informe o seu CNPJ Vinculado ao Serviço de Transporte: </label>
+              <input id="cnpjmei" type="text" class="form-control" name="cnpjmei" placeholder="XX.XXX.XXXX/XXXX-XX" maxlength="20">
+            </div>
+          </div>          
+        </div>
+
+        <div class="row">
+          <!--Botões-->
+          <div class="col-md-8" id="botoes">
+            <!--<button id="Cadastrar" name="Cadastrar" class="btn btn-success" type="Submit">Cadastrar</button>-->
+            <input name="Cadastrar" type="submit" id="Cadastrar" class="btn btn-success" value="Concluir meu Cadastro!" />
+            <!--<button id="Cancelar" name="Cancelar" class="btn btn-danger" type="Reset">Cancelar</button>-->
+            <input name="Cancelar" type="reset" id="Cancelar" class="btn btn-danger" value="Limpar Campos!" />
+            <!--<a class="btn btn-success" href="#"><i class="glyphicon glyphiicon-ok"></i> Salvar</a>
+            <a class="btn btn-danger" href="#"><i class="glyphicon glyphiicon-ok"></i> Cancelar</a>-->
+        </div>
+    </form>
+  </div>
+</body>
+</html>
